@@ -1,8 +1,8 @@
 {
-	"name": "<Library_Name>",
+	"name": "Variable",
 	"version": "1.0.0",
-	"keywords": "<Library_Keywords>",
-	"description": "<Library_Description>",
+	"keywords": "Dynamically, Variable, Variable Management, Variable Manager, Variable Manager Library, Variable Manager Library for Arduino, Variable Manager Library for Atmel AVR, Variable Manager Library for Atmel Mega AVR, Variable Manager Library for Atmel AVR and Atmel Mega AVR, Variable Manager Library for Arduino and Atmel AVR, Variable Manager Library for Arduino",
+	"description": "Dynamically manage variables in Arduino and Atmel AVR and Atmel Mega AVR microcontrollers.",
 	"authors":
 	{
 		"name": "Mehmet Gunce Akkoyun",
@@ -11,7 +11,7 @@
 	},
 	"license": "MIT",
 	"frameworks": "arduino",
-	"headers": "<Library_Header_Name>.h",
+	"headers": "Variable.h",
 	"platforms":
 	[
 		"atmelavr",
@@ -20,14 +20,14 @@
 	"repository":
 	{
 		"type": "git",
-		"url": "https://github.com/akkoyun/<Repo_Name>.git"
+		"url": "https://github.com/akkoyun/Variable.git"
 	},
 	"examples": [
 		{
-			"name": "<Sample_Name>",
-			"base": "examples/<Sample_Folder>",
+			"name": "Variable_Test",
+			"base": "examples/Variable_Test",
 			"files": [
-				"<Sample_Name>.ino"
+				"Variable_Test.ino"
 			]
 		}
 	]

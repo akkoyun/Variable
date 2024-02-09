@@ -22,7 +22,7 @@
 	class Variable {
 
 		// Public Context
-		private:
+		public:
 
 			// Define Variable Structure
 			struct Struct_Variable_List {
@@ -45,9 +45,6 @@
 				Struct_Variable Variable[MAX_VARIABLE_COUNT];
 
 			} Data;
-
-		// Public Context
-		public:
 
 			// Constructor
 			Variable(void) {

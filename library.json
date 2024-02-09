@@ -1,6 +1,6 @@
 {
 	"name": "Variable",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"keywords": "Dynamically, Variable, Management, Manager, Library",
 	"description": "Dynamically manage variables in Arduino and Atmel AVR and Atmel Mega AVR microcontrollers.",
 	"authors":

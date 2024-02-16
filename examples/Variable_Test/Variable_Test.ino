@@ -8,7 +8,7 @@ Variable<float> Data;
 void setup() {
 
 	// Start Serial
-	Serial.begin(9600);
+	Serial.begin(115200);
 
 	// Add some data
 	Data.Add(_Data_PCB_T_, 30.2);
@@ -28,14 +28,14 @@ void setup() {
 
 		// Check if the value is null
 		if (value != nullptr) {
-			Serial.print("Key ");
+			Serial.print(F("Key "));
 			Serial.print(key);
-			Serial.print(" has value: ");
+			Serial.print(F(" has value: "));
 			Serial.println(*value);
 		} else {
-			Serial.print("Key ");
+			Serial.print(F("Key "));
 			Serial.print(key);
-			Serial.println(" not found.");
+			Serial.println(F(" not found."));
 		}
 
 	}

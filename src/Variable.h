@@ -11,117 +11,140 @@
 #define __Variable__
 
 	// Define Arduino Library
-	#ifndef __Arduino__
+	#ifndef Arduino_h
 		#include <Arduino.h>
 	#endif
 
-	// Include Config
-	#include "Config.h"
+	// Include Data Type Library
+	#ifndef __DataType__
+		#include "DataType.h"
+	#endif
 
-	// Define Variable Class
-	class Variable {
+	// KeyValue Class
+	template<typename DataType>
+	class Key_Value {
 
 		// Public Context
 		public:
 
-			// Define Variable Structure
-			struct Struct_Variable_List {
+			// Declare Key Variable
+			uint16_t _Data_Key;
 
-				// Define Variable Count
-				uint8_t	Variable_Count = 0;
+			// Declare Value Variable
+			DataType _Data_Value;
 
-				// Define Variable Structure
-				struct Struct_Variable {
-					
-					// Define Variable Name
-					char * Name;
-
-					// Define Variable Value
-					float Value;
-
-				};
-
-				// Define Variable Array
-				Struct_Variable Variable[MAX_VARIABLE_COUNT];
-
-			} Data;
-
-			// Constructor
-			Variable(void) {
-
-				// Clear Variables
-				this->Clear();
+			// Constractor
+			Key_Value() : _Data_Key(0), _Data_Value() {}
+			Key_Value(uint16_t _Key, DataType _Value) : _Data_Key(_Key), _Data_Value(_Value) {
 
 			}
 
-			// Set Variables Function
-			bool Add(const char* _Name, float _Value) {
+	};
 
-				// Control for Existing Variable
-				for (uint8_t i = 0; i < this->Data.Variable_Count; i++) {
+	// Variable Class
+	template<typename DataType>
+	class Variable {
 
-					// Check for Existing Variable
-					if (strcmp(Data.Variable[i].Name, _Name) == 0) {
+		// Private Context
+		private:
 
-						// Update Value
-						Data.Variable[i].Value = _Value;
+			// Declare Data Container
+			Key_Value<DataType>* Data_Container;
+			
+			// Declare Capacity
+			uint16_t Capacity;
+			
+			// Declare Current Size
+			uint16_t Current_Size;
 
+			// Resize Function
+			void Resize(void) {
+
+				// Check Capacity
+				Capacity = (Capacity == 0) ? 1 : Capacity * 2;
+
+				// Create New Data
+				Key_Value<DataType>* _New_Data = new Key_Value<DataType>[Capacity];
+
+				// Copy Data
+				for (uint16_t i = 0; i < Current_Size; i++) _New_Data[i] = Data_Container[i];
+
+				// Delete Old Data
+				delete[] Data_Container;
+
+				// Set New Data
+				Data_Container = _New_Data;
+
+			}
+
+		public:
+
+			// Constractor
+			Variable(void) : Data_Container(nullptr), Capacity(0), Current_Size(0) {
+
+			}
+
+			// Destructor
+			~Variable(void) {
+
+				// Delete Data
+				delete[] Data_Container;
+
+			}
+
+			// Push Back Function
+			void Add(uint16_t _Key, DataType _Value) {
+
+				// Search for the key
+				for (uint16_t i = 0; i < Current_Size; i++) {
+
+					// Check Key
+					if (Data_Container[i]._Data_Key == _Key) {
+						
+						// Update the value
+						Data_Container[i]._Data_Value = _Value;
+						
 						// End Function
-						return true;
+						return;
 
 					}
 
 				}
 
-				// Control for Max Variable Count
-				if (this->Data.Variable_Count < MAX_VARIABLE_COUNT) {
+				// Check Capacity
+				if (Current_Size == Capacity) Resize();
 
-					// Set Variable Name
-					Data.Variable[this->Data.Variable_Count].Name = strdup(_Name);
-
-					// Control for Memory Allocation
-					if (Data.Variable[this->Data.Variable_Count].Name == NULL) return false;
-
-					// Set Variable Value
-					Data.Variable[this->Data.Variable_Count].Value = _Value;
-
-					// Increase Variable Count
-					this->Data.Variable_Count++;
-
-					// End Function
-					return true;
-
-				}
-
-				// Failed to add variable (likely due to reaching max count)
-				return false;
+				// Add new data
+				Data_Container[Current_Size++] = Key_Value<DataType>(_Key, _Value);
 
 			}
 
-			// Clear Variable
-			void Clear(void) {
+			// Get Function
+			DataType* Get(uint16_t _Key) {
 
-				// Loop through all variables
-				for (uint8_t i = 0; i < this->Data.Variable_Count; i++) {
+				// Search for Key
+				for (uint16_t i = 0; i < Current_Size; i++) {
 
-					// Free the memory
-					free(Data.Variable[i].Name);
+					// Check Key
+					if (Data_Container[i]._Data_Key == _Key) {
 
-					// Set the pointer to NULL
-					Data.Variable[i].Name = NULL;
+						// Return Value
+						return &Data_Container[i]._Data_Value;
+
+					}
 
 				}
 
-				// Clear the variable count
-				this->Data.Variable_Count = 0;
+				// Return Null
+				return nullptr;
 
 			}
 
-			// Count Function
-			uint8_t Count(void) {
-
-				// Return Variable Count
-				return this->Data.Variable_Count;
+			// Get Size Function
+			uint16_t Size(void) const {
+				
+				// Return Size
+				return Current_Size;
 
 			}
 

@@ -15,7 +15,6 @@
 	#define _Data_B_AC_				(uint16_t)2022
 	#define _Data_B_SOC_			(uint16_t)2031
 	#define _Data_B_SOCA_			(uint16_t)2032
-	#define _Data_B_IC_				(uint16_t)2041
 	#define _Data_B_DC_				(uint16_t)2042
 	#define _Data_B_FC_				(uint16_t)2043
 	#define _Data_B_T_				(uint16_t)2051

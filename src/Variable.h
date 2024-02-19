@@ -90,6 +90,11 @@
 				// Delete Data
 				delete[] Data_Container;
 
+				// Reset pointers and counters
+				Data_Container = nullptr;
+				Capacity = 0;
+				Current_Size = 0;
+
 			}
 
 			// Push Back Function
@@ -148,6 +153,18 @@
 
 			}
 
+			// Clear Function
+			void Clear() {
+			
+				// Delete existing data
+				delete[] Data_Container;
+
+				// Reset pointers and counters
+				Data_Container = nullptr;
+				Capacity = 0;
+				Current_Size = 0;
+
+			}
 	};
 
 #endif /* defined(__Variable__) */

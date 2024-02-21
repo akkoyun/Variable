@@ -21,8 +21,7 @@
 	#endif
 
 	// KeyValue Class
-	template<typename DataType>
-	class Key_Value {
+	template<typename DataType> class Key_Value {
 
 		// Public Context
 		public:
@@ -42,8 +41,7 @@
 	};
 
 	// Variable Class
-	template<typename DataType>
-	class Variable {
+	template<typename DataType> class Variable {
 
 		// Private Context
 		private:
@@ -85,7 +83,7 @@
 			}
 
 			// Destructor
-			~Variable(void) {
+			~Variable() {
 
 				// Delete Data
 				delete[] Data_Container;
@@ -154,7 +152,7 @@
 			}
 
 			// Clear Function
-			void Clear() {
+			void Clear(void) {
 			
 				// Delete existing data
 				delete[] Data_Container;

@@ -143,6 +143,30 @@
 
 			}
 
+			// Get_Char Function
+			void Get(uint16_t _Key, char * _Value) {
+
+				// Search for Key
+				for (uint16_t i = 0; i < Current_Size; i++) {
+
+					// Check Key
+					if (Data_Container[i]._Data_Key == _Key) {
+
+						// Convert Value to char array
+						dtostrf(Data_Container[i]._Data_Value, 5, 2, _Value); // Assuming float/double type and formatting it as x.xx
+
+						// End Function
+						return;
+
+					}
+
+				}
+
+				// If key is not found, return empty string
+				strcpy(_Value, "");
+
+			}
+
 			// Get Size Function
 			uint16_t Size(void) const {
 				

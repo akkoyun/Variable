@@ -458,5 +458,8 @@
 	#define _Data_V_Set_Min_		(uint16_t)7960
 	#define _Data_V_Set_Max_		(uint16_t)7961
 	#define _Data_MAX_SYSSTAT_		(uint16_t)7999
+	#define _Firmware_ID_			(uint16_t)9001
+	#define _FOTA_Download_Status_	(uint16_t)9002
+	#define _FOTA_Download_Time_	(uint16_t)9003
 
 #endif /* defined(__DataType__) */
